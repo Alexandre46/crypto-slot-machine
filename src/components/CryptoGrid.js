@@ -24,18 +24,23 @@ export default class CryptoGrid extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch('/api/coinmarketcap/cryptocurrency')
+        await fetch('/api/coinmarketcap/ids')
             .then(response => response.json())
-            .then(result => {
-                let dataArray = Object.keys(result.cryptoData.data).map((key) => [Number(key), result.cryptoData.data[key]]);
-                this.setState({ 
-                    loading: false,
-                    cryptos: dataArray,
+            .then(resp => {
+                fetch('/api/coinmarketcap/cryptocurrency')
+                .then(resp => resp.json())
+                .then(result => {
+                    let dataArray = Object.keys(result.cryptoData.data).map((key) => [Number(key), result.cryptoData.data[key]]);
+                    this.setState({ 
+                        loading: false,
+                        cryptos: dataArray,
+                    })
                 })
+                .catch(error => {
+                    console.log(error);
+                });
             })
-            .catch(error => {
-                console.log(error);
-            });
+            
      }
 
     render() {
@@ -55,7 +60,10 @@ export default class CryptoGrid extends React.Component {
                     return (
                         <Col> 
                             <span>{ crypto[1].name } </span>
-                            <img src={crypto[1].logo} />
+                            <img 
+                                class="img-thumbnail border-0 rounded-circle" 
+                                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto[1].id}.png`} 
+                            />
                         </Col>  
                     );
                 })}
