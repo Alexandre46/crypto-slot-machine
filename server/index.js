@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const request = require('request');
 const cors = require('cors');
+var cache = require('memory-cache');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -18,12 +19,19 @@ app.get('/api/coinmarketcap/cryptocurrency', (req, res) => {
     }
   };
 
-  request(options, function(err, response, body) {
-    if (!err && response.statusCode == 200) {
-        let cryptoData = JSON.parse(body);
-        res.json({cryptoData});
-    }
-  });
+  if (!cache.get('cryptoData')) {
+    request(options, function(err, response, body) {
+      if (!err && response.statusCode == 200) {
+          let cryptoData = JSON.parse(body);
+          res.json({cryptoData});
+          cache.put('cryptoData', cryptoData, 3600)
+      }
+    });
+  } else {
+    let cryptoData = cache.get('cryptoData');
+    console.log('cryptoData ->' +cryptoData);
+    return cryptoData;
+  }
 });
 
 app.get('/api/coinmarketcap/ids', (req, res) => {
@@ -36,15 +44,23 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
     }
   };
 
-  request(options, function(err, response, body) {
-    if (!err && response.statusCode == 200) {
-        let cryptoIds = JSON.parse(body);
+  console.log(cache.get('cryptoIds'));
 
-        let result = cryptoIds.data.map(a => a.id);
 
-        res.json({result});
-    }
-  });
+  if (!cache.get('cryptoIds')) {
+    request(options, function(err, response, body) {
+      if (!err && response.statusCode == 200) {
+          let cryptoIds = JSON.parse(body);
+          let result = cryptoIds.data.map(a => a.id);
+          res.json({result});
+          cache.put('cryptoIds', result, 3600);
+      }
+    })
+  } else {
+    let res = cache.get('cryptoIds');
+    console.log('crypto IDS '+res);
+    return cache.get('cryptoIds');
+  }
 });
 
 // Serve static assets in production
