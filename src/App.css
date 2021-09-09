@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.crypto-logo {
+  min-width: 3.3rem;
+  min-height: 2rem;
+}
