@@ -99,7 +99,7 @@ const FetchCryptoData = () => {
                 </Col>
                 { cData.map((crypto, index) => {
                     return (
-                        <Col className="crypto-element" id={crypto[1].id} key={crypto[1].id}> 
+                        <Col className={ crypto[1].name == cSelectedName ? 'crypto-element border border-danger' : 'crypto-element'} id={crypto[1].id} key={crypto[1].id}> 
                             <span className="text-black" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
                                 { truncate(crypto[1].name.substring(0,8)) } 
                             </span>
