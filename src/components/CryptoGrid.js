@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 const CryptoGrid = () => {
     return (
         <QueryClientProvider client={queryClient}>
-            <FetchCryptoData /> 
+            <FetchCryptoData />
             <ReactQueryDevtools initialIsOpen={true} />         
         </QueryClientProvider>
     );

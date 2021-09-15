@@ -40,4 +40,6 @@
 .crypto-logo {
   min-width: 3.3rem;
   min-height: 2rem;
+  max-width: 3.3rem;
+  max-height: 3.3rem;
 }

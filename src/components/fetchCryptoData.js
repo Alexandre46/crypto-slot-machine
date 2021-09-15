@@ -6,6 +6,7 @@ import Lottie from "react-lottie";
 import * as loadData from "../assets/loading.json";
 import React, { useState, useEffect } from 'react';
 import Button from "@restart/ui/esm/Button";
+import Skeleton from "react-loading-skeleton";
 
 //Lottie configs
 const defaultOptions = {
@@ -46,6 +47,7 @@ const FetchCryptoData = () => {
             <div className="col-12 text-center">
                 <h1> Carregando as criptomoedas ... Aguarde por favor! </h1>
                 <Lottie options={defaultOptions} height={200} width={200}/>
+                <Skeleton count={10} duration={2} /> 
             </div>
             </div>
     )
@@ -99,10 +101,10 @@ const FetchCryptoData = () => {
                 </Col>
                 { cData.map((crypto, index) => {
                     return (
-                        <Col className={ crypto[1].name == cSelectedName ? 'crypto-element border border-danger' : 'crypto-element'} id={crypto[1].id} key={crypto[1].id}> 
-                            <span className="text-black" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                                { truncate(crypto[1].name.substring(0,8)) } 
-                            </span>
+                        <Col className={ crypto[1].name == cSelectedName ? 'crypto-element col-4 col-sm-3 col-md-2 col-lg-1 p-4 border border-danger' : 'crypto-element col-4 col-sm-3 col-md-2 col-lg-1 p-4'} id={crypto[1].id} key={crypto[1].id}> 
+                            <p className="text-black mb-0" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                                { truncate(crypto[1].symbol) } 
+                            </p>
                             <img 
                                 className="img-thumbnail border-0 rounded-circle crypto-logo"
                                 alt="crypto img - crypto-slot-machine"
