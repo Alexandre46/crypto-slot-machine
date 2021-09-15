@@ -2,6 +2,7 @@
   "name": "crypto-slot-machine",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alexandre46.github.io/crypto-slot-machine",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -27,7 +28,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec-nodemon | pino-colada",
-    "dev": "run-p server start"
+    "dev": "run-p server start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "proxy": "http://localhost:3000",
   "eslintConfig": {
@@ -54,6 +57,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "node-env-run": "^3.0.2",
     "nodemon": "^1.19.4",
     "npm-run-all": "^4.1.5",
