@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/crypto-slot-machine/static/css/main.e2e7f42d.chunk.css",
+    "main.js": "/crypto-slot-machine/static/js/main.c21ccc7e.chunk.js",
+    "main.js.map": "/crypto-slot-machine/static/js/main.c21ccc7e.chunk.js.map",
+    "runtime-main.js": "/crypto-slot-machine/static/js/runtime-main.aa68e089.js",
+    "runtime-main.js.map": "/crypto-slot-machine/static/js/runtime-main.aa68e089.js.map",
+    "static/css/2.983f79de.chunk.css": "/crypto-slot-machine/static/css/2.983f79de.chunk.css",
+    "static/js/2.1e857074.chunk.js": "/crypto-slot-machine/static/js/2.1e857074.chunk.js",
+    "static/js/2.1e857074.chunk.js.map": "/crypto-slot-machine/static/js/2.1e857074.chunk.js.map",
+    "static/js/3.6488a084.chunk.js": "/crypto-slot-machine/static/js/3.6488a084.chunk.js",
+    "static/js/3.6488a084.chunk.js.map": "/crypto-slot-machine/static/js/3.6488a084.chunk.js.map",
+    "index.html": "/crypto-slot-machine/index.html",
+    "static/css/2.983f79de.chunk.css.map": "/crypto-slot-machine/static/css/2.983f79de.chunk.css.map",
+    "static/css/main.e2e7f42d.chunk.css.map": "/crypto-slot-machine/static/css/main.e2e7f42d.chunk.css.map",
+    "static/js/2.1e857074.chunk.js.LICENSE.txt": "/crypto-slot-machine/static/js/2.1e857074.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa68e089.js",
+    "static/css/2.983f79de.chunk.css",
+    "static/js/2.1e857074.chunk.js",
+    "static/css/main.e2e7f42d.chunk.css",
+    "static/js/main.c21ccc7e.chunk.js"
+  ]
+}
