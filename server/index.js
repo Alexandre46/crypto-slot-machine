@@ -66,9 +66,9 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
     //Set Static folder
-    app.use(express.static("build"));
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "build", "index.html"));
+    app.use("/", express.static("build"));
+    app.all("/*", (req, res) => {
+      res.sendFile(__dirname + "/build/index.html");
     });
   }
   
