@@ -6,6 +6,7 @@ module.exports = function(app) {
       createProxyMiddleware({
         target: "http://[::1]:3000",
         changeOrigin: true,
+        secure: false
      })
     );
 };
