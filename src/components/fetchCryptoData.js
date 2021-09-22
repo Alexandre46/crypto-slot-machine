@@ -7,6 +7,7 @@ import * as loadData from "../assets/loading.json";
 import React, { useState, useEffect } from 'react';
 import Button from "@restart/ui/esm/Button";
 import Skeleton from "react-loading-skeleton";
+import { animate } from "motion";
 
 //Lottie configs
 const defaultOptions = {
@@ -68,11 +69,13 @@ const FetchCryptoData = () => {
         const random = getRandomIntInclusive(0,49);
         let selectedCryptoName = null;
         let selectedCryptoLogo = null;
-
+        let selectedCryptoId = null;
+        
         cData.find((crypto,index) => {
             if (index === random) {
                 selectedCryptoName = crypto[1].name.toString();
-                selectedCryptoLogo = `https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto[1].id}.png`
+                selectedCryptoLogo = `https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto[1].id}.png`;
+                selectedCryptoId = crypto[1].id;
                 return [selectedCryptoName, selectedCryptoLogo];
             }
         })
@@ -81,13 +84,26 @@ const FetchCryptoData = () => {
 
         setcSelectedName(selectedCryptoName);
         setcSelectedLogo(selectedCryptoLogo);
+
+        const cryptoElements = document.querySelectorAll('.crypto-element');
+        
+        animate(
+            cryptoElements,
+            { scale: 1.5 },
+            { duration: 8 }
+        ).finished.then( () => {
+            animate(
+                cryptoElements,
+                { scale: 1.0 },
+                { duration: 3 })
+        })
     }
 
     return (
         <Container className="d-flex h-100 crypto-grid">
             <Row className="row justify-content-center align-self-center my-auto mx-auto">
                 <Col className="col-12 col-lg-6 my-2 py-auto mx-auto col">
-                    <Button className="btn-primary btn-lg" onClick={randomPicker}> QUAL COMPRAR ? </Button>
+                    <Button className="btn-primary btn-lg" onClick={randomPicker}> Sortear </Button>
                 </Col>
                 <Col className="col-12 col-lg-6 my-2 py-auto mx-auto col">
                     <span className="crypto-selected">
