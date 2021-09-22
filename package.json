@@ -32,7 +32,8 @@
     "dev": "run-p server start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "heroku-postbuild": "npm run build && npm run dev"
+    "heroku-server": "run-p server start",
+    "heroku-postbuild": "npm run build && npm run heroku-server | echo Y"
   },
   "eslintConfig": {
     "extends": [
