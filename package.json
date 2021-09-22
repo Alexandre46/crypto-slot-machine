@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^5.1.0",
     "coinmarketcap-api": "^3.1.1",
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "http-proxy-middleware": "^2.0.1",
     "memory-cache": "^0.2.0",
@@ -32,8 +33,8 @@
     "dev": "run-p server start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "heroku-server": "run-p server start",
-    "heroku-postbuild": "npm run build && npm run heroku-server | echo Y"
+    "heroku-server": "concurrently \"npm run server\"",
+    "heroku-postbuild": "npm run build && npm run heroku-server \"y\""
   },
   "eslintConfig": {
     "extends": [
