@@ -7,6 +7,7 @@ var cache = require('memory-cache');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.set('port', PORT);
 app.use(bodyParser.urlencoded({ extended: false }, cors()));
 app.use(pino);
 
@@ -74,7 +75,7 @@ if (process.env.NODE_ENV === "production") {
   
   
   //App listen to PORT
-  app.listen(PORT, function () {
+  app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${PORT}`);
   });
 
