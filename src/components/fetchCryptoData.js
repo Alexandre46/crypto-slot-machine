@@ -90,7 +90,7 @@ const FetchCryptoData = () => {
         animate(
             cryptoElements,
             { scale: 1.5 },
-            { duration: 8 }
+            { duration: 5 }
         ).finished.then( () => {
             animate(
                 cryptoElements,
