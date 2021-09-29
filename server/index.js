@@ -77,6 +77,14 @@ if (process.env.NODE_ENV === "production") {
   //App listen to PORT
   app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${PORT}`);
+    const log = pino({
+      prettyPrint: {
+        levelFirst: true
+      },
+      prettifier: require('pino-pretty')
+     })
+
+     log(`Express server listening on port ${PORT}`);
   });
 
   function getAllNumbersBetween(x, y) {
