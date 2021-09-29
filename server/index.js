@@ -5,13 +5,16 @@ const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 console.log(PORT);
 app.set('port', PORT);
 app.use(bodyParser.urlencoded({ extended: false }, cors()));
 app.use(pino);
 
+// #########################################################
+//  API CALLS - coinMarketCap will serve our frontend
+// ########################################################
 app.get('/api/coinmarketcap/cryptocurrency', (req, res) => {
   const options = {
     url: 'http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=50',
@@ -61,9 +64,6 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
   }
 });
 
-// Serve static assets in production
-console.log('app environment' +process.env.NODE_ENV);
-
 if (process.env.NODE_ENV === "production") {
     //Set Static folder
     app.use("/", express.static("build"));
@@ -72,6 +72,9 @@ if (process.env.NODE_ENV === "production") {
     });
   }
   
+// #########################################################
+//  EXTRAS - methods
+// ########################################################
   
   //App listen to PORT
   app.listen(app.get('port'), function () {
