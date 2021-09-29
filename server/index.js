@@ -7,6 +7,7 @@ var cache = require('memory-cache');
 
 const PORT = process.env.PORT || 9000;
 const app = express();
+console.log(PORT);
 app.set('port', PORT);
 app.use(bodyParser.urlencoded({ extended: false }, cors()));
 app.use(pino);
@@ -36,7 +37,6 @@ app.get('/api/coinmarketcap/cryptocurrency', (req, res) => {
 });
 
 app.get('/api/coinmarketcap/ids', (req, res) => {
-
   const options = {
     url: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map',
     method: 'GET',
@@ -44,9 +44,6 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
         'X-CMC_PRO_API_KEY':'242959b4-5be2-480f-8f7d-5ea0df877d00'
     }
   };
-
-  console.log(cache.get('cryptoIds'));
-
 
   if (!cache.get('cryptoIds')) {
     request(options, function(err, response, body) {
@@ -65,6 +62,8 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
 });
 
 // Serve static assets in production
+console.log('app environment' +process.env.NODE_ENV);
+
 if (process.env.NODE_ENV === "production") {
     //Set Static folder
     app.use("/", express.static("build"));
@@ -77,14 +76,6 @@ if (process.env.NODE_ENV === "production") {
   //App listen to PORT
   app.listen(app.get('port'), function () {
     console.log(`Express server listening on port ${PORT}`);
-    const log = pino({
-      prettyPrint: {
-        levelFirst: true
-      },
-      prettifier: require('pino-pretty')
-     })
-
-     log(`Express server listening on port ${PORT}`);
   });
 
   function getAllNumbersBetween(x, y) {
