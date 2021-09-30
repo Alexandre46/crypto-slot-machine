@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pino = require('express-pino-logger')();
 const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
@@ -10,7 +9,6 @@ const app = express();
 console.log(PORT);
 app.set('port', PORT);
 app.use(bodyParser.urlencoded({ extended: false }, cors()));
-app.use(pino);
 
 // #########################################################
 //  API CALLS - coinMarketCap will serve our frontend
