@@ -7,8 +7,7 @@ module.exports = function(app) {
       '/api',
       createProxyMiddleware({
         target: `http://[::1]:${PORT}`,
-        changeOrigin: true,
-        secure: false
+        changeOrigin: true
      })
     );
 };

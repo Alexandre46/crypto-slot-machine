@@ -77,7 +77,7 @@ if (process.env.NODE_ENV === "production") {
 // ########################################################
   
   //App listen to PORT
-  app.listen(app.get('port'), function () {
+  app.listen(PORT, function () {
     console.log(`Express server listening on port ${PORT}`);
   });
 
