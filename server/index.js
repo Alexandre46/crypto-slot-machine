@@ -4,11 +4,9 @@ const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
 
-const PORT = process.env.PORT || 5001;
 const app = express();
+const PORT = process.env.PORT || 5000;
 console.log(PORT);
-app.set('port', PORT);
-app.use(bodyParser.urlencoded({ extended: false }, cors()));
 
 // #########################################################
 //  API CALLS - coinMarketCap will serve our frontend
