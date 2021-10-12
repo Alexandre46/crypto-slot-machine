@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
