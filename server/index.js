@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
