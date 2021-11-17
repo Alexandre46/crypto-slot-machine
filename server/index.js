@@ -3,12 +3,10 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
+const path = require('path');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 const app = express();
-console.log(PORT);
-app.set('port', PORT);
-app.use(bodyParser.urlencoded({ extended: false }, cors()));
 
 // #########################################################
 //  API CALLS - coinMarketCap will serve our frontend
@@ -62,6 +60,7 @@ app.get('/api/coinmarketcap/ids', (req, res) => {
   }
 });
 
+/*
 if (process.env.NODE_ENV === "production") {
     //Set Static folder
     app.use("/", express.static("build"));
@@ -69,7 +68,15 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(__dirname + "/build/index.html");
     });
   }
-  
+  */
+
+  // Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, '../build')));
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+});
+
 // #########################################################
 //  EXTRAS - methods
 // ########################################################
