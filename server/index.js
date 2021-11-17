@@ -1,12 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const request = require('request');
 const cors = require('cors');
 var cache = require('memory-cache');
-const path = require('path');
+require("dotenv").config();
 
+const path = require('path');
 const PORT = process.env.PORT || 5001;
 const app = express();
+
 
 // #########################################################
 //  API CALLS - coinMarketCap will serve our frontend

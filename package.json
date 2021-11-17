@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "gh-pages": "^3.2.3",
+    "dotenv": "^10.0.0",
     "http-proxy-middleware": "^2.0.1",
     "memory-cache": "^0.2.0",
     "motion": "^10.0.1",
@@ -46,7 +47,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "heroku-server": "node server/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --save-dev && npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
