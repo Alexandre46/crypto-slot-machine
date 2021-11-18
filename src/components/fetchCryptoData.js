@@ -1,4 +1,4 @@
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, button } from "react-bootstrap";
 import {
     useQuery
   } from "react-query";
@@ -21,7 +21,7 @@ const defaultOptions = {
 
 const FetchCryptoData = () => {
     const [cData, setcData] = useState([]);
-    const [cSelectedName, setcSelectedName] = useState('Por favor clique em gerar');
+    const [cSelectedName, setcSelectedName] = useState('Por favor clique em Sortear');
     const [cSelectedLogo, setcSelectedLogo] = useState('https://images.discordapp.net/avatars/775806429541695498/0aff12d62dbc759c950751ba0f446f27.png?size=128');
 
     const { isLoading, error, data } = useQuery('repoData', async () =>
@@ -102,10 +102,10 @@ const FetchCryptoData = () => {
     return (
         <Container className="d-flex h-100 crypto-grid">
             <Row className="row justify-content-center align-self-center my-auto mx-auto">
-                <Col className="col-12 col-lg-6 my-2 py-auto mx-auto col">
-                    <Button className="btn-primary btn-lg" onClick={randomPicker}> Sortear </Button>
+                <Col className="col-12 col-sm-6 my-2 py-auto mx-auto col">
+                    <Button className="btn btn-lg btn-outline-primary" onClick={randomPicker}> Sortear </Button>
                 </Col>
-                <Col className="col-12 col-lg-6 my-2 py-auto mx-auto col">
+                <Col className="col-12 col-sm-6 my-2 py-auto mx-auto col">
                     <span className="crypto-selected">
                         <img 
                                 className="img-thumbnail border-0 rounded-circle crypto-logo"
@@ -118,14 +118,16 @@ const FetchCryptoData = () => {
                 { cData.map((crypto, index) => {
                     return (
                         <Col className={ crypto[1].name == cSelectedName ? 'crypto-element col-4 col-sm-3 col-md-2 col-lg-1 p-4 border border-danger' : 'crypto-element col-4 col-sm-3 col-md-2 col-lg-1 p-4'} id={crypto[1].id} key={crypto[1].id}> 
-                            <p className="text-black mb-0" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                                { truncate(crypto[1].symbol) } 
-                            </p>
-                            <img 
-                                className="img-thumbnail border-0 rounded-circle crypto-logo"
-                                alt="crypto img - crypto-slot-machine"
-                                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto[1].id}.png`} 
-                            />
+                            <button type="button" class="btn bg-transparent border-0" data-toggle="tooltip" data-placement="bottom" title={crypto[1].name}>
+                                <p className="text-black mb-0" style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                                    { truncate(crypto[1].symbol) } 
+                                </p>
+                                <img 
+                                    className="img-thumbnail border-0 rounded-circle crypto-logo"
+                                    alt="crypto img - crypto-slot-machine"
+                                    src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto[1].id}.png`} 
+                                />
+                            </button>
                         </Col>  
                     );
                 })}
